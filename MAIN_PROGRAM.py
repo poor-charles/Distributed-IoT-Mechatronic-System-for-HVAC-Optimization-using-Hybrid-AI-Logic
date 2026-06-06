@@ -30,12 +30,12 @@ prevent_duplicates()
 # -----------------------------
 
 # Import your V7 AI Deployment script
-from THESIS_DEPLOYMENT_MODEL_V8 import find_best_action_for_environment
+from MACHINELEARNING_MODEL import find_best_action_for_environment
 
 # --- CONFIGURATION ---
-DATA_GATHER_SCRIPT = "THESIS_GATHER_DATA_V17.py"
-LIVE_DATA_CSV = "/home/rkrichkid2001/thesis_aiproject/venv/testdata.csv"
-LOG_FILE = "/home/rkrichkid2001/thesis_aiproject/venv/master_debug_logfile.txt"
+DATA_GATHER_SCRIPT = "DATA_MANAGING_PROGRAM.py"
+LIVE_DATA_CSV = "/home/rkrichkid2001/thesis_aiproject/venv/testdata.csv" #LOCATION OF THE FILE, CHANGE AS NEEDED
+LOG_FILE = "/home/rkrichkid2001/thesis_aiproject/venv/master_debug_logfile.txt" #LOCATION OF THE FILE, CHANGE AS NEEDED
 LOOP_INTERVAL = 60  # The Master Controller checks the room EVERY MINUTE
 COMPRESSOR_DELAY_MINS = 5  # Anti-short cycle delay for AC on/off
 
