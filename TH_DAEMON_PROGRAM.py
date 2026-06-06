@@ -19,7 +19,7 @@ import os
 # WorkingDirectory=/home/rkrichkid2001/thesis_aiproject/venv/
 # Environment="PATH=/home/rkrichkid2001/thesis_aiproject/venv/bin:/usr/bin:/bin"
 # ExecStartPre=/bin/sleep 10
-# ExecStart=/home/rkrichkid2001/thesis_aiproject/venv/bin/python /home/rkrichkid2001/thesis_aiproject/venv/SUBPROCESS_PROGRAM.py
+# ExecStart=/home/rkrichkid2001/thesis_aiproject/venv/bin/python /home/rkrichkid2001/thesis_aiproject/venv/TH_DAEMON_PROGRAM.py
 # Restart=always
 # RestartSec=5
 # StandardOutput=journal
@@ -64,7 +64,7 @@ TIMEOUT_SECONDS = 180       # 3 minutes (60 seconds * 3 readings)
 # --- PATHS (Must be absolute paths) ---
 # IMPORTANT: Point this to your virtual environment's python!
 PYTHON_BIN = "/home/rkrichkid2001/thesis_aiproject/venv/bin/python" 
-MASTER_SCRIPT = "/home/rkrichkid2001/thesis_aiproject/venv/MAIN_PROGRAM.py"
+MASTER_SCRIPT = "/home/rkrichkid2001/thesis_aiproject/venv/TH_MAIN_PROGRAM.py"
 WORKING_DIR = "/home/rkrichkid2001/thesis_aiproject/venv/"
 
 # --- STATE VARIABLES ---
