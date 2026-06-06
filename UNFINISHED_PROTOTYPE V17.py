@@ -40,14 +40,13 @@ LOOP_INTERVAL = 60  # The Master Controller checks the room EVERY MINUTE
 COMPRESSOR_DELAY_MINS = 5  # Anti-short cycle delay for AC on/off
 
 # --- MQTT CONFIGURATION ---
-MQTT_BROKER = "localhost"  # Since this script runs on the Pi itself
+MQTT_BROKER = "localhost"  
 MQTT_PORT = 1883
 COMMAND_TOPIC = "/ac/master_command"
 
 # STABILITY AND TRIGGER CONFIGS
 STABILITY_WINDOW = 5          # Look at the last 5 minutes to determine stability
 PMV_STD_THRESHOLD = 0.015      # STRICT: Max Standard Deviation allowed over 5 mins
-#EXTENDED_STABILITY_WINDOW = 10 # Fallback: Look at the last 10 minutes
 EXTENDED_PMV_STD_THRESHOLD = 0.025 # FALLBACK: Max Standard Deviation allowed over 10 mins
 DRASTIC_OCCUPANCY_CHANGE = 5  # If occupancy changes by this much, force AI to re-evaluate instantly
 TIMEOUT_WINDOW = 35           # The absolute maximum 35 time to wait before forcing AI intervention
@@ -103,7 +102,6 @@ def start_data_gatherer():
     global gather_process
     print(f"🔄 [MASTER] Starting Data Gatherer ({DATA_GATHER_SCRIPT})...")
     
-    # Add stdout=subprocess.PIPE and stderr=subprocess.STDOUT
     # This captures both normal prints and crash errors from V16!
     gather_process = subprocess.Popen(
         [sys.executable, "-u", DATA_GATHER_SCRIPT],
@@ -124,7 +122,6 @@ def get_csv_row_count():
     """Helper function to cleanly and efficiently count rows without loading Pandas."""
     try:
         with open(LIVE_DATA_CSV, 'r') as f:
-            # This is a highly optimized Python trick to count lines instantly
             return sum(1 for _ in f)
     except Exception:
         return 0
@@ -202,7 +199,6 @@ def main_ai_loop():
         'ac_mode_label': 'off',
         'ac_fan_speed_label': 'off'
     }
-    # --- ADD THESE TWO NEW MEMORY VARIABLES ---
     last_successful_action = None  
     wake_reason = None             
     # ------------------------------------------
@@ -214,24 +210,22 @@ def main_ai_loop():
     # -------------------------
     golden_zone_active = False
     baseline_occupancy = None
-    # --- NEW: ANTI-OVERCOOL TRACKERS ---
+    # --- ANTI-OVERCOOL TRACKERS ---
     anti_overcool_start_time = 0
     anti_overcool_start_pmv = 0
     anti_overcool_escalated = False
-    # 1. Rename this tracker
     last_processed_row_count = get_csv_row_count()
     current_timeout_window = TIMEOUT_WINDOW  # This will dynamically adjust based on how far we are from the comfort zone
     
     while True:
         
-        # --- ADD THIS: THE MASTER HEARTBEAT ---
+        # --- THE MASTER HEARTBEAT ---
         try:
             mqtt_client.publish("/master/heartbeat", "ONLINE")
         except:
             pass
         # --------------------------------------
         
-        # 2. Change the sleep to 5 seconds. It will act as a fast "polling" monitor.
         time.sleep(5) 
         
         current_row_count = get_csv_row_count()
@@ -257,7 +251,6 @@ def main_ai_loop():
             continue
             
         pmv = env['actual_pmv']
-        #occ = env['num_occupants']
         
         # ==========================================
         # 🛡️ 5-MINUTE OCCUPANCY DEBOUNCE GUARDRAIL
@@ -366,7 +359,7 @@ def main_ai_loop():
             last_successful_action = None
             
         # ==========================================
-        # 🛡️ THE FIX: GLOBAL ANTI-OVERCOOL TRIPWIRE
+        # 🛡️ THE GLOBAL ANTI-OVERCOOL TRIPWIRE
         # ==========================================
         # If the room drops to -0.1 and there are people inside, instantly override EVERYTHING.
         if pmv < -0.1 and current_state != "ANTI_OVERCOOL" and occ > 0:
@@ -476,7 +469,6 @@ def main_ai_loop():
                 print("❄️ Target PMV 0.5 reached! Exiting Turbo and kicking back to V7 proposed settings.")
                 active_action = stored_v7_action.copy()
                 current_state = "MONITOR_ACTION"
-                # --- ADD THE NEW LINE HERE ---
                 current_timeout_window = calculate_dynamic_timeout(pmv)
                 pmv_buffer.clear()
             else:
