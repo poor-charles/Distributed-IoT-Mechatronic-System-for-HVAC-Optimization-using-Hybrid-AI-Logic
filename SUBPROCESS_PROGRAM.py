@@ -64,7 +64,7 @@ TIMEOUT_SECONDS = 180       # 3 minutes (60 seconds * 3 readings)
 # --- PATHS (Must be absolute paths) ---
 # IMPORTANT: Point this to your virtual environment's python!
 PYTHON_BIN = "/home/rkrichkid2001/thesis_aiproject/venv/bin/python" 
-MASTER_SCRIPT = "/home/rkrichkid2001/thesis_aiproject/venv/UNFINISHED_PROTOTYPE V13.py"
+MASTER_SCRIPT = "/home/rkrichkid2001/thesis_aiproject/venv/MAIN_PROGRAM.py"
 WORKING_DIR = "/home/rkrichkid2001/thesis_aiproject/venv/"
 
 # --- STATE VARIABLES ---
