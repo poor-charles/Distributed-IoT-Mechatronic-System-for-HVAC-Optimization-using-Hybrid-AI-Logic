@@ -11,22 +11,22 @@ CAL_DIR.mkdir(parents=True, exist_ok=True)
 # ------------------------------------------------
 PARAM_SPACE = [
     # 1. Lighting Multiplier
-    Real(0.87, 0.88, name="lighting_multiplier"),
+    Real(0.5, 1, name="lighting_multiplier"),
     
     # 2. Equipment Multiplier
-    Real(0.79, 0.8, name="equipment_multiplier"), 
+    Real(0.5, 1, name="equipment_multiplier"), 
     
     # 3. AC Efficiency (COP)
-    Real(2.7, 2.71, name="cop"),
+    Real(2.7, 3.2, name="cop"),
     
     # 4. Occupancy Multiplier
     Real(0.999, 1.0, name="occupancy_multiplier"), 
     
     # 5. Cooling Capacity Multiplier
-    Real(1.406, 1.407, name="cooling_capacity_multiplier"),
+    Real(1, 1.5, name="cooling_capacity_multiplier"),
 
     # 6. Fan Flow Multiplier
-    Real(0.55, 0.56, name="fan_flow_multiplier"),
+    Real(0.5, 1, name="fan_flow_multiplier"),
     
 ]
 
