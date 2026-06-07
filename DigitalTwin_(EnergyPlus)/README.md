@@ -76,6 +76,10 @@ Provides a Streamlit-based dashboard for real-time visualization of building per
 
 Implements live synchronization between the physical asset and EnergyPlus through MQTT communication, enabling real-time virtual parallel assessment.
 
+### Operational Digital Twin Launcher
+
+Automatically launches the Operational Digital Twin Dashboard and Real-Time Digital Twin Engine to support deployment and real-time virtual parallel assessment.
+
 ---
 
 ## Calibration and Validation Metrics
