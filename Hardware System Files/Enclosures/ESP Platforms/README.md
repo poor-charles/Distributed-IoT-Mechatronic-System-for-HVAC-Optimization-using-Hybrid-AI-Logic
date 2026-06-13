@@ -4,7 +4,7 @@ ESP Node Platform Folder:
   ESP 3 uses Stand v3
   ESP 1 does not need a platform
 
-Refer to the .jpg files included for the platform orientation.
+Refer to the .png files included for the platform orientation.
 
 Use the attached .gcode to directly print the enclosure and and its covers.
 
