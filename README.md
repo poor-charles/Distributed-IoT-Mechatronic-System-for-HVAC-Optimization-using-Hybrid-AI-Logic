@@ -12,6 +12,6 @@ A Bayesian Optimized Random Forest model integrated with deterministic physics b
 - To be updated & managed by Rissby Arne Cerna
 
 [Hardware Systems Files]
-- To be updated & managed by Paolo Renomeron
+- Updated & Managed by Paolo Renomeron
 
 General Note: To be updated...
